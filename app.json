@@ -1,0 +1,14 @@
+{
+  "name": "booking-rooms-api_v2",
+  "scripts": {
+  },
+  "env": {
+    "MONGODB_URI": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    }
+  }
+}
+    
