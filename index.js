@@ -13,18 +13,16 @@ const app = new Koa()
 const publicRouter = new Router({ prefix: '/api' })
 const privateRouter = new Router({ prefix: '/api' })
 
+app.use(BodyParser())
+app.use(BearerToken())
+app.use(logger())
+app.use(cors())
+
 privateRouter.use(middleware.requireAuth)
 require('./routes')(privateRouter, publicRouter)
 
 mongoose.connect(global.gConfig.db_url, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = global.Promise
-
-app.use(BodyParser())
-app.use(BearerToken())
-
-app.use(logger())
-
-app.use(cors())
 
 app
   .use(publicRouter.routes())

@@ -14,7 +14,7 @@ const signIn = async ctx => {
   const { email, password } = ctx.request.body
 
   try {
-    const foudUser = await User.findOne({ email })
+    const foudUser = await User.findOne({ email }).populate('company')
 
     if (foudUser) {
       if (bcrypt.compareSync(password, foudUser.hash)) {
@@ -45,6 +45,7 @@ const signUp = async ctx => {
       ctx.throw(409, 'User with such email already exist')
     } else {
       const newUser = new User(user)
+      newUser._id = new ObjectId()
       const savedUser = await newUser.save()
 
         const emailVerificationToken = jwt.sign({

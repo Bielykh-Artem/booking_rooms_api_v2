@@ -4,7 +4,7 @@ const fetchUserById = async ctx => {
   const { id } = ctx.params
 
   try {
-    const user = await User.findOne({ _id: id })
+    const user = await User.findOne({ _id: id }).populate('company')
     ctx.body = user
   } catch (err) {
     ctx.throw(err)
@@ -12,6 +12,19 @@ const fetchUserById = async ctx => {
 
 }
 
+const editUserById = async ctx => {
+  const { id } = ctx.params
+  const user = ctx.request.body
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate({ _id: id }, user, {new: true})
+    ctx.body = updatedUser
+  } catch (err) {
+    ctx.throw(err)
+  }
+}
+
 module.exports = {
-  fetchUserById
+  fetchUserById,
+  editUserById
 }
