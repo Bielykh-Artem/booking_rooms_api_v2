@@ -1,4 +1,5 @@
 const Room = require('../models/room')
+const ObjectId = require('mongodb').ObjectID
 
 const fetchRooms = async ctx => {
   const { user: { company: { _id } } } = ctx.decoded
@@ -23,10 +24,13 @@ const addNewRoom = async ctx => {
     name: room.name
   })
 
+  newRoom._id = new ObjectId()
+
   try {
     const savedRoom = await newRoom.save()
     ctx.body = savedRoom
   } catch (err) {
+    console.log(err)
     ctx.throw(err)
   }
 }

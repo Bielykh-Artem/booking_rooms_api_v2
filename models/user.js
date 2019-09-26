@@ -18,6 +18,7 @@ const userSchema = new Schema({
   firstName: { type: String, default: '' },
   lastName: { type: String, default: '' },
   role: { type: Array, default: [4] },
+  avatar: { type: String, default: '' },
   active: { type: Boolean, default: false, required: true },
 })
 

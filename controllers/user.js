@@ -1,10 +1,10 @@
 const User = require('../models/user')
 
 const fetchUserById = async ctx => {
-  const { id } = ctx.params
+  const { userId } = ctx.params
 
   try {
-    const user = await User.findOne({ _id: id }).populate('company')
+    const user = await User.findOne({ _id: userId }).populate('company')
     ctx.body = user
   } catch (err) {
     ctx.throw(err)
@@ -13,11 +13,11 @@ const fetchUserById = async ctx => {
 }
 
 const editUserById = async ctx => {
-  const { id } = ctx.params
+  const { userId } = ctx.params
   const user = ctx.request.body
 
   try {
-    const updatedUser = await User.findByIdAndUpdate({ _id: id }, user, {new: true})
+    const updatedUser = await User.findOneAndUpdate({ _id: userId }, user, {new: true}).populate('company')
     ctx.body = updatedUser
   } catch (err) {
     ctx.throw(err)
