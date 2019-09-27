@@ -48,10 +48,10 @@ const signUp = async ctx => {
       newUser._id = new ObjectId()
       const savedUser = await newUser.save()
 
-        const emailVerificationToken = jwt.sign({
-          exp: moment().add(1, 'hours').valueOf(), // 1 hour
-          data: savedUser._id
-        }, process.env.EMAIL_VERIFICATION_SECRET)
+      const emailVerificationToken = jwt.sign({
+        exp: moment().add(1, 'hours').valueOf(), // 1 hour
+        data: savedUser._id
+      }, process.env.EMAIL_VERIFICATION_SECRET)
 
       const data = {
         from: 'Excited User <me@samples.mailgun.org>',

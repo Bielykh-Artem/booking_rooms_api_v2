@@ -20,6 +20,7 @@ const userSchema = new Schema({
   role: { type: Array, default: [4] },
   avatar: { type: String, default: '' },
   active: { type: Boolean, default: false, required: true },
+  editable: { type: Boolean, default: true, required: true }
 })
 
 module.exports = mongoose.model('User', userSchema)
