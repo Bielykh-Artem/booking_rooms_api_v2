@@ -78,9 +78,21 @@ const fetchUsers = async ctx => {
   }
 }
 
+const removeUserById = async ctx => {
+  const { userId } = ctx.params
+
+  try {
+    const removedUser = await User.deleteOne({ _id: userId })
+		ctx.body = removedUser
+  } catch(err) {
+    ctx.throw(err)
+  }
+}
+
 module.exports = {
   fetchUsers,
   fetchUserById,
   editUserById,
-  createUser
+  createUser,
+  removeUserById
 }

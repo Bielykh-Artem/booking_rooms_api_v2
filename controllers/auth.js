@@ -24,7 +24,8 @@ const signIn = async ctx => {
         ctx.throw(403, 'Invalid password')
       }
     } else {
-      ctx.throw(500, 'User with such email does not exist')
+      ctx.status = 500
+      ctx.body = 'User with such email does not exist'
     }
 
 
@@ -135,10 +136,23 @@ const resetPassword = async ctx => {
   }
 }
 
+const fetchUserForActivation = async ctx => {
+  const { userId } = ctx.params
+
+  try {
+    const user = await User.findOne({ _id: userId }).populate('company')
+    ctx.body = user
+  } catch (err) {
+    ctx.throw(err)
+  }
+
+}
+
 module.exports = {
   signIn,
   signUp,
   accountActivation,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  fetchUserForActivation
 }
