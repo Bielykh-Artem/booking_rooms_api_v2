@@ -9,7 +9,8 @@ const config = {
     config_id: 'development',
     app_name: 'booking-rooks-api_v2',
     node_port: NODE_PORT,
-    db_url: 'mongodb://localhost:27017/admin'
+    // db_url: 'mongodb://localhost:27017/admin'
+    db_url: process.env.MONGODB_URI
   },
   release: {
     config_id: 'release',
