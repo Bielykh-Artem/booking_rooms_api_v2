@@ -13,7 +13,11 @@ const app = new Koa()
 const publicRouter = new Router({ prefix: '/api' })
 const privateRouter = new Router({ prefix: '/api' })
 
-app.use(BodyParser())
+app.use(BodyParser({
+  formLimit: "50mb",
+  jsonLimit: "50mb",
+  textLimit: "50mb",
+}))
 app.use(BearerToken())
 app.use(logger())
 app.use(cors())

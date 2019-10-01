@@ -5,4 +5,5 @@ module.exports = (privateRouter, publicRouter) => {
   privateRouter.use(require('./room'))
   privateRouter.use(require('./event'))
   privateRouter.use(require('./employee'))
+  privateRouter.use(require('./uploader'))
 }
