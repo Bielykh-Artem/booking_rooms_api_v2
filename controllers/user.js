@@ -53,7 +53,8 @@ const createUser = async ctx => {
 
     const data = {
       from: 'Excited User <me@samples.mailgun.org>',
-      to: savedUser.email || 'bielykh.artem@gmail.com',
+      // to: savedUser.email || 'bielykh.artem@gmail.com',
+      to: 'bielykh.artem@gmail.com',
       subject: 'Hello',
       text: `You invited to company. To activate your account, follow the link: ${origin}/activation/${emailVerificationToken}`
     }
