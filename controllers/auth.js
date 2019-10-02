@@ -56,7 +56,7 @@ const signUp = async ctx => {
 
       const data = {
         from: 'Excited User <me@samples.mailgun.org>',
-        to: 'bielykh.artem@gmail.com',
+        to: savedUser.email || 'bielykh.artem@gmail.com',
         subject: 'Hello',
         text: `To activate your account, follow the link: ${origin}/activation/${emailVerificationToken}`
       }
@@ -106,7 +106,7 @@ const forgotPassword = async ctx => {
 
       const data = {
         from: 'Excited User <me@samples.mailgun.org>',
-        to: 'bielykh.artem@gmail.com',
+        to: user.email || 'bielykh.artem@gmail.com',
         subject: 'Hello',
         text: `To change password, follow the link: ${origin}/reset/${emailVerificationToken}`
       }
